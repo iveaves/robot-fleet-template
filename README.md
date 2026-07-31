@@ -16,13 +16,16 @@ That's it. `app/dispatch.py` is where it goes.
 
 ## Getting set up
 
-**In a Codespace** — everything is installed already. Skip to *Credentials*.
+Either works — use whichever you'd normally reach for.
 
-**Locally**
+**Locally** (most people)
 
 ```bash
 pip install -r requirements.txt
 ```
+
+**In a Codespace** — Code → Codespaces → Create codespace. Dependencies install
+themselves; skip to *Credentials*.
 
 The database is a SQLite file committed to the repo (`warehouse.db`), already
 seeded. Nothing to migrate. If you want a clean slate:
@@ -77,7 +80,7 @@ warehouse.db        seeded, committed
 Run the tests with:
 
 ```bash
-pytest
+python -m pytest
 ```
 
 ## How we'll work
