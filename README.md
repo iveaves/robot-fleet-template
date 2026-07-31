@@ -14,43 +14,36 @@ Right now a human assigns the work. We want a script.
 
 That's it. `app/dispatch.py` is where it goes.
 
-## Getting set up
+## Setup
 
-Either works — use whichever you'd normally reach for.
-
-**Locally** (most people)
+Python 3.9 or newer, then:
 
 ```bash
+git clone https://github.com/iveaves/robot-fleet-template.git
+cd robot-fleet-template
 pip install -r requirements.txt
 ```
 
-**In a Codespace** — Code → Codespaces → Create codespace. Dependencies install
-themselves; skip to *Credentials*.
+That's the whole setup. The database is a SQLite file committed to the repo
+(`warehouse.db`), already seeded — nothing to install, migrate or run.
 
-The database is a SQLite file committed to the repo (`warehouse.db`), already
-seeded. Nothing to migrate. If you want a clean slate:
-
-```bash
-python scripts/seed.py          # rebuilds warehouse.db from scratch
-```
-
-## Credentials
-
-Your interviewer will give you an API key at the start. Then:
+Your interviewer gives you an API key. Then:
 
 ```bash
 export FLEET_API_KEY=cand_...
+python3 scripts/check_setup.py
 ```
 
-The base URL is already set in `app/config.py`. Check it works:
+That prints five green ticks and takes about five seconds. **Please run it
+before the call** — if something's wrong we'd rather find out the day before
+than spend the first ten minutes of the interview on it.
 
-```bash
-python -c "from app.fleet_client import FleetClient; print(FleetClient().list_robots())"
-```
+Use whatever editor you like. If you'd rather work in a virtualenv, or with
+`uv`, or in a container, all fine — nothing here depends on how you run Python.
 
 ## The API
 
-Interactive docs, including every endpoint and schema:
+Interactive docs, with every endpoint and schema:
 
 **https://fleet-api-production-4bc7.up.railway.app/docs**
 
@@ -73,7 +66,8 @@ app/
 tests/
   test_dispatch.py  two examples, so the harness is obvious
 scripts/
-  seed.py           rebuild warehouse.db
+  check_setup.py    verify your environment
+  seed.py           rebuild warehouse.db from scratch
 warehouse.db        seeded, committed
 ```
 
